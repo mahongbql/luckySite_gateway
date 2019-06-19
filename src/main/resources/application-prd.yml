@@ -21,7 +21,7 @@ spring:
 
 #路由规则配置
 zuul:
-  ignoredServices: *
+  ignoredServices: "*"
   routes:
     luckySite:
       path: /luckySite/**
