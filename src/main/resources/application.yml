@@ -1,5 +1,3 @@
-management:
-  endpoints:
-    web:
-      exposure:
-        include: routes,refresh,health
+spring:
+  profiles:
+    active: prd

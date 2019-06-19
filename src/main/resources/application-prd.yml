@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: luckySite_gateway
+
+server:
+  port: 9999
+
+spring:
+  redis:
+      host: 127.0.0.1
+      port: 6379
+      password: mhb19940803751X
+      timeout: 5000ms
+      database: 0
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 8
+          min-idle: 2
+          max-wait: -1ms
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka/
+    healthcheck:
+      enabled: true
