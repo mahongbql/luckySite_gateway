@@ -1,5 +1,5 @@
 server:
-  port: 9999
+  port: 8802
 
 spring:
   application:
@@ -23,9 +23,7 @@ zuul:
   routes:
     luckySite:
       path: /luckySite/**
-    luckySite:
       serviceId: luckySite
-    luckySite:
       retryable: true
 
 
