@@ -4,6 +4,7 @@ import com.luckySite.utils.RedisUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.io.BufferedReader;
  * @date 2019/6/18 18:15
  * @Description
  */
+@Slf4j
 @Component
 public class TokenFilter  extends ZuulFilter {
 
@@ -67,16 +69,20 @@ public class TokenFilter  extends ZuulFilter {
         String url = request.getRequestURI();
 
         if(null == token){
+            log.error("token为空！！！");
             return false;
         }else if(-1 != url.indexOf(LOGIN_URL)){
+            log.info("请求为登陆访问，url：" + url);
             return true;
         }
 
         Object tokenObj = redisUtil.get(token);
 
         if (null != tokenObj) {
+            log.info("token 未过期，放行");
             return true;
         } else {
+            log.info("非登陆方法无token，拦截！！！");
             return false;
         }
     }
