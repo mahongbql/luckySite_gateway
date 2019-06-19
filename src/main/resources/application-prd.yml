@@ -19,6 +19,18 @@ spring:
           min-idle: 2
           max-wait: -1ms
 
+#路由规则配置
+zuul:
+  ignoredServices: *
+  routes:
+    luckySite:
+      path: /luckySite/**
+    luckySite:
+      serviceId: luckySite
+    luckySite:
+      retryable: true
+
+
 eureka:
   client:
     serviceUrl:
